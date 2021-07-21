@@ -29,7 +29,18 @@ public class Bank {
 
         Account account = new Account(number);
         accounts.add(account);
-
         System.out.println("Account created");
+    }
+
+    public void checkBalance(int number) {
+        Account existingAccount = accounts.stream().filter(account -> account.getNumber() == number).findFirst()
+                .orElse(null);
+
+        if (existingAccount == null) {
+            System.out.println("This account doesn't exists");
+            return;
+        }
+
+        System.out.println("The balance of account " + number + " is: " + existingAccount.getBalance());
     }
 }
