@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
+    private static final String ERROR_MESSAGE = "This account doesn't exists";
+
     private List<Account> accounts;
 
     public Bank() {
-        this.accounts = new ArrayList<Account>();
+        this.accounts = new ArrayList<>();
     }
 
     public List<Account> getAccounts() {
@@ -37,24 +39,38 @@ public class Bank {
                 .orElse(null);
 
         if (existingAccount == null) {
-            System.out.println("This account doesn't exists");
+            System.out.println(ERROR_MESSAGE);
             return;
         }
 
         System.out.println("The balance of account " + number + " is: " + existingAccount.getBalance());
     }
 
-    public void deposit(int number, double amount){
+    public void deposit(int number, double amount) {
         Account existingAccount = accounts.stream().filter(account -> account.getNumber() == number).findFirst()
                 .orElse(null);
 
         if (existingAccount == null) {
-            System.out.println("This account doesn't exists");
+            System.out.println(ERROR_MESSAGE);
             return;
         }
 
-        existingAccount.setBalance(amount);
+        existingAccount.increaseBalance(amount);
 
         System.out.println("The amount of " + amount + " was deposited to the account " + existingAccount.getNumber());
+    }
+
+    public void withdraw(int number, double amount) {
+        Account existingAccount = accounts.stream().filter(account -> account.getNumber() == number).findFirst()
+                .orElse(null);
+
+        if (existingAccount == null) {
+            System.out.println(ERROR_MESSAGE);
+            return;
+        }
+
+        existingAccount.decreaseBalance(amount);
+
+        System.out.println("The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
     }
 }

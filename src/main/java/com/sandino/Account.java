@@ -23,6 +23,14 @@ public class Account {
     }
 
     public void setBalance(double balance) {
-        this.balance = this.balance + balance;
+        this.balance = balance;
+    }
+
+    public void increaseBalance(double amount) {
+        this.balance = this.balance + amount;
+    }
+
+    public void decreaseBalance(double amount) {
+        this.balance = this.balance - amount;
     }
 }
