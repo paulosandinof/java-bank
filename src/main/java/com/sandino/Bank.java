@@ -19,9 +19,28 @@ public class Bank {
     }
 
     public void createAccount(int number) {
+
+        boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
+
+        if (exists) {
+            System.out.println("An account with this number already exists");
+            return;
+        }
+
         Account account = new Account(number);
         accounts.add(account);
-
         System.out.println("Account created");
+    }
+
+    public void checkBalance(int number) {
+        Account existingAccount = accounts.stream().filter(account -> account.getNumber() == number).findFirst()
+                .orElse(null);
+
+        if (existingAccount == null) {
+            System.out.println("This account doesn't exists");
+            return;
+        }
+
+        System.out.println("The balance of account " + number + " is: " + existingAccount.getBalance());
     }
 }
