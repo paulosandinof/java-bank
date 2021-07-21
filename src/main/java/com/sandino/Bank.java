@@ -43,4 +43,18 @@ public class Bank {
 
         System.out.println("The balance of account " + number + " is: " + existingAccount.getBalance());
     }
+
+    public void deposit(int number, double amount){
+        Account existingAccount = accounts.stream().filter(account -> account.getNumber() == number).findFirst()
+                .orElse(null);
+
+        if (existingAccount == null) {
+            System.out.println("This account doesn't exists");
+            return;
+        }
+
+        existingAccount.setBalance(amount);
+
+        System.out.println("The amount of " + amount + " was deposited to the account " + existingAccount.getNumber());
+    }
 }

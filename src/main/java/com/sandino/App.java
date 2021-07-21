@@ -12,6 +12,7 @@ public class App {
         while (option != 6) {
             System.out.println("1 - Create account");
             System.out.println("2 - Check Balance");
+            System.out.println("3 - Deposit");
             System.out.println("6 - Exit");
             System.out.print("Choose an option: ");
 
@@ -29,7 +30,7 @@ public class App {
                 System.out.println("-----------------------------");
 
             } else if (option == 2) {
-                System.out.print("Please type a number: ");
+                System.out.print("Please type an account number: ");
 
                 int number = input.nextInt();
 
@@ -37,6 +38,18 @@ public class App {
 
                 System.out.println("-----------------------------");
 
+            } else if (option == 3) {
+                System.out.print("Please type an account number: ");
+
+                int number = input.nextInt();
+
+                System.out.print("Please type the amount: ");
+                
+                double amount = input.nextDouble();
+
+                bank.deposit(number, amount);
+
+                System.out.println("-----------------------------");
             }
         }
         input.close();
