@@ -71,6 +71,31 @@ public class Bank {
 
         existingAccount.decreaseBalance(amount);
 
-        System.out.println("The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
+        System.out.println(
+                "The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
+    }
+
+    public void transfer(int sender, int receiver, double amount) {
+        Account existingSender = accounts.stream().filter(account -> account.getNumber() == sender).findFirst()
+                .orElse(null);
+
+        if (existingSender == null) {
+            System.out.println("Sender account doesn't exists");
+            return;
+        }
+
+        Account existingReceiver = accounts.stream().filter(account -> account.getNumber() == receiver).findFirst()
+                .orElse(null);
+
+        if (existingReceiver == null) {
+            System.out.println("Receiver account doesn't exists");
+            return;
+        }
+
+        existingSender.decreaseBalance(amount);
+        existingReceiver.increaseBalance(amount);
+
+        System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
+                + " to account " + existingReceiver.getNumber());
     }
 }

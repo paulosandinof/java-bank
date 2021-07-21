@@ -15,6 +15,7 @@ public class App {
             System.out.println("2 - Check Balance");
             System.out.println("3 - Deposit");
             System.out.println("4 - Withdraw");
+            System.out.println("5 - Transfer");
             System.out.println("6 - Exit");
             System.out.print("Choose an option: ");
 
@@ -52,6 +53,7 @@ public class App {
                 bank.deposit(number, amount);
 
                 System.out.println(SEPARATOR);
+
             } else if (option == 4) {
                 System.out.print("Please type an account number: ");
 
@@ -62,6 +64,23 @@ public class App {
                 double amount = input.nextDouble();
 
                 bank.withdraw(number, amount);
+            
+                System.out.println(SEPARATOR);
+
+            } else if (option == 5) {
+                System.out.print("Please type the sender account number: ");
+                int sender = input.nextInt();
+
+                System.out.print("Please type the receiver account number: ");
+                int receiver = input.nextInt();
+
+                System.out.print("Please type the amount: ");
+                double amount = input.nextDouble();
+
+                bank.transfer(sender, receiver, amount);
+
+                System.out.println(SEPARATOR);
+
             }
         }
         input.close();
