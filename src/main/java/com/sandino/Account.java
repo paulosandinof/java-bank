@@ -33,4 +33,9 @@ public class Account {
     public void decreaseBalance(double amount) {
         this.balance = this.balance - amount;
     }
+
+    public void transfer(Account sender, double amount) {
+        sender.decreaseBalance(amount);
+        this.increaseBalance(amount);
+    }
 }

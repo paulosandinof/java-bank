@@ -92,8 +92,10 @@ public class Bank {
             return;
         }
 
-        existingSender.decreaseBalance(amount);
-        existingReceiver.increaseBalance(amount);
+        // existingSender.decreaseBalance(amount);
+        // existingReceiver.increaseBalance(amount);
+
+        existingReceiver.transfer(existingSender, amount);
 
         System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
                 + " to account " + existingReceiver.getNumber());
