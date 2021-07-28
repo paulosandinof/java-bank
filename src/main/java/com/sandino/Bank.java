@@ -20,7 +20,7 @@ public class Bank {
         this.accounts = accounts;
     }
 
-    public void createAccount(int number) {
+    public void createRegularAccount(int number) {
 
         boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
 
@@ -31,6 +31,19 @@ public class Bank {
 
         Account account = new Account(number);
         accounts.add(account);
+        System.out.println("Account created");
+    }
+
+    public void createBonusAccount(int number) {
+        boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
+        
+        if (exists) {
+            System.out.println("An account with this number already exists");
+            return;
+        }
+
+        BonusAccount bonusAccount = new BonusAccount(number);
+        accounts.add(bonusAccount);
         System.out.println("Account created");
     }
 
@@ -91,9 +104,6 @@ public class Bank {
             System.out.println("Receiver account doesn't exists");
             return;
         }
-
-        // existingSender.decreaseBalance(amount);
-        // existingReceiver.increaseBalance(amount);
 
         existingReceiver.transfer(existingSender, amount);
 
