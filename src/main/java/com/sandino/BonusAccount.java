@@ -2,7 +2,7 @@ package com.sandino;
 
 public class BonusAccount extends Account {
     private int score;
-    
+
     public BonusAccount(int number) {
         super(number);
         this.score = 10;
@@ -18,7 +18,7 @@ public class BonusAccount extends Account {
 
     @Override
     public void increaseBalance(double amount) {
-        int scoreEarned = (int) amount / 100;
+        int scoreEarned = (int) amount / 150;
 
         System.out.println("Score earned: " + scoreEarned);
 
@@ -29,4 +29,17 @@ public class BonusAccount extends Account {
         super.increaseBalance(amount);
     }
 
+    @Override
+    public void transfer(Account sender, double amount) {
+        int scoreEarned = (int) amount / 100;
+
+        System.out.println("Score earned: " + scoreEarned);
+
+        this.score = this.score + scoreEarned;
+
+        System.out.println("Current score: " + this.score);
+        
+        sender.decreaseBalance(amount);
+        super.increaseBalance(amount);
+    }
 }
