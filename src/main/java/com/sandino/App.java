@@ -50,7 +50,11 @@ public class App {
 
                 int number = input.nextInt();
 
-                bank.createSavingsAccount(number);
+                System.out.print("Please type the initial balance: ");
+
+                double initialBalance = input.nextDouble();
+
+                bank.createSavingsAccount(number, initialBalance);
 
                 System.out.println(SEPARATOR);
 

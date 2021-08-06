@@ -5,6 +5,11 @@ public class SavingsAccount extends Account {
         super(number);
     }
 
+    public SavingsAccount(int number, double initialBalance) {
+        super(number);
+        setBalance(initialBalance);
+    }
+
     public void earnInterest(double percentage) {
         double earnings = (this.getBalance() * percentage) / 100.0;
 

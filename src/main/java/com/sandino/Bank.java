@@ -47,7 +47,7 @@ public class Bank {
         System.out.println("Account created");
     }
 
-    public void createSavingsAccount(int number) {
+    public void createSavingsAccount(int number, double initialBalance) {
         boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
 
         if (exists) {
@@ -55,7 +55,7 @@ public class Bank {
             return;
         }
 
-        SavingsAccount savingsAccount = new SavingsAccount(number);
+        SavingsAccount savingsAccount = new SavingsAccount(number, initialBalance);
         accounts.add(savingsAccount);
         System.out.println("Account created");
     }
