@@ -36,7 +36,7 @@ public class Bank {
 
     public void createBonusAccount(int number) {
         boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
-        
+
         if (exists) {
             System.out.println("An account with this number already exists");
             return;
@@ -44,6 +44,19 @@ public class Bank {
 
         BonusAccount bonusAccount = new BonusAccount(number);
         accounts.add(bonusAccount);
+        System.out.println("Account created");
+    }
+
+    public void createSavingsAccount(int number) {
+        boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
+
+        if (exists) {
+            System.out.println("An account with this number already exists");
+            return;
+        }
+
+        SavingsAccount savingsAccount = new SavingsAccount(number);
+        accounts.add(savingsAccount);
         System.out.println("Account created");
     }
 
@@ -109,5 +122,26 @@ public class Bank {
 
         System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
                 + " to account " + existingReceiver.getNumber());
+    }
+
+    public void earnInterest(int number, double percentage) {
+        Account existingAccount = accounts.stream().filter(account -> account.getNumber() == number).findFirst()
+                .orElse(null);
+
+        if (existingAccount == null) {
+            System.out.println(ERROR_MESSAGE);
+            return;
+        }
+
+        if (!(existingAccount instanceof SavingsAccount)) {
+            System.out.println("This operation cannot be done by this account");
+            return;
+        }
+
+        SavingsAccount savingsAccount = (SavingsAccount) existingAccount;
+
+        savingsAccount.earnInterest(percentage);
+
+        System.out.println("The account " + savingsAccount.getNumber() + " earned " + percentage + "% of interest");
     }
 }
