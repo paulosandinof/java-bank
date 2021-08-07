@@ -1,8 +1,18 @@
 package com.sandino;
 
+import com.sandino.exceptions.NegativeBalanceException;
+
 public class SavingsAccount extends Account {
     public SavingsAccount(int number) {
         super(number);
+    }
+
+    @Override
+    public void decreaseBalance(double amount) throws NegativeBalanceException {
+        if (this.balance - amount < 0) {
+            throw new NegativeBalanceException("Savings account cannot have negative balance");
+        }
+        this.balance = this.balance - amount;
     }
 
     public void earnInterest(double percentage) {

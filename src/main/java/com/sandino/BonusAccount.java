@@ -1,5 +1,7 @@
 package com.sandino;
 
+import com.sandino.exceptions.NegativeBalanceException;
+
 public class BonusAccount extends Account {
     private int score;
 
@@ -30,7 +32,7 @@ public class BonusAccount extends Account {
     }
 
     @Override
-    public void transfer(Account sender, double amount) {
+    public void transfer(Account sender, double amount) throws NegativeBalanceException {
         int scoreEarned = (int) amount / 100;
 
         System.out.println("Score earned: " + scoreEarned);
