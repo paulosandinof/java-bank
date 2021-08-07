@@ -1,9 +1,11 @@
 package com.sandino;
 
+import com.sandino.exceptions.NegativeBalanceLimitException;
+
 public class Account {
 
     private int number;
-    private double balance;
+    protected double balance;
 
     public Account(int number) {
         this.number = number;
@@ -30,11 +32,14 @@ public class Account {
         this.balance = this.balance + amount;
     }
 
-    public void decreaseBalance(double amount) {
+    public void decreaseBalance(double amount) throws NegativeBalanceLimitException {
+        if (this.balance - amount < -1000) {
+            throw new NegativeBalanceLimitException("Negative balance limit exceeded");
+        }
         this.balance = this.balance - amount;
     }
 
-    public void transfer(Account sender, double amount) {
+    public void transfer(Account sender, double amount) throws NegativeBalanceLimitException {
         sender.decreaseBalance(amount);
         this.increaseBalance(amount);
     }

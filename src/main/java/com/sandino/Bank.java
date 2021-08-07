@@ -3,6 +3,8 @@ package com.sandino;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sandino.exceptions.NegativeBalanceLimitException;
+
 public class Bank {
     private static final String ERROR_MESSAGE = "This account doesn't exists";
 
@@ -95,10 +97,14 @@ public class Bank {
             return;
         }
 
-        existingAccount.decreaseBalance(amount);
+        try {
+            existingAccount.decreaseBalance(amount);
 
-        System.out.println(
-                "The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
+            System.out.println(
+                    "The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
+        } catch (NegativeBalanceLimitException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void transfer(int sender, int receiver, double amount) {
@@ -118,10 +124,14 @@ public class Bank {
             return;
         }
 
-        existingReceiver.transfer(existingSender, amount);
+        try {
+            existingReceiver.transfer(existingSender, amount);
 
-        System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
-                + " to account " + existingReceiver.getNumber());
+            System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
+                    + " to account " + existingReceiver.getNumber());
+        } catch (NegativeBalanceLimitException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void earnInterest(int number, double percentage) {
