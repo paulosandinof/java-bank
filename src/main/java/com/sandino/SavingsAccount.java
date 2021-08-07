@@ -3,8 +3,10 @@ package com.sandino;
 import com.sandino.exceptions.NegativeBalanceException;
 
 public class SavingsAccount extends Account {
-    public SavingsAccount(int number) {
+    public SavingsAccount(int number, double initialBalance) {
         super(number);
+        setBalance(initialBalance);
+
     }
 
     @Override
