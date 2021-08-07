@@ -3,6 +3,8 @@ package com.sandino;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sandino.exceptions.NegativeBalanceException;
+
 public class Bank {
     private static final String ERROR_MESSAGE = "This account doesn't exists";
 
@@ -100,7 +102,7 @@ public class Bank {
 
             System.out.println(
                     "The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
-        } catch (Exception e) {
+        } catch (NegativeBalanceException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -127,7 +129,7 @@ public class Bank {
 
             System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
                     + " to account " + existingReceiver.getNumber());
-        } catch (Exception e) {
+        } catch (NegativeBalanceException e) {
             System.out.println(e.getMessage());
         }
     }

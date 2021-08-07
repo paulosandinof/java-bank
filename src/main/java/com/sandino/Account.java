@@ -33,6 +33,9 @@ public class Account {
     }
 
     public void decreaseBalance(double amount) throws NegativeBalanceException {
+        if (this.balance - amount < -1000) {
+            throw new NegativeBalanceException("Negative balance limit exceeded");
+        }
         this.balance = this.balance - amount;
     }
 
