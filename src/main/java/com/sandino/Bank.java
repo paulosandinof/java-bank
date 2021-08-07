@@ -95,10 +95,14 @@ public class Bank {
             return;
         }
 
-        existingAccount.decreaseBalance(amount);
+        try {
+            existingAccount.decreaseBalance(amount);
 
-        System.out.println(
-                "The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
+            System.out.println(
+                    "The amount of " + amount + " was withdrawned from the account " + existingAccount.getNumber());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void transfer(int sender, int receiver, double amount) {
@@ -118,10 +122,14 @@ public class Bank {
             return;
         }
 
-        existingReceiver.transfer(existingSender, amount);
+        try {
+            existingReceiver.transfer(existingSender, amount);
 
-        System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
-                + " to account " + existingReceiver.getNumber());
+            System.out.println("The amount of " + amount + " was transfered from account " + existingSender.getNumber()
+                    + " to account " + existingReceiver.getNumber());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void earnInterest(int number, double percentage) {
