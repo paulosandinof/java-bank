@@ -20,13 +20,13 @@ public class BonusAccount extends Account {
 
     @Override
     public void increaseBalance(double amount) {
-        int scoreEarned = (int) amount / 150;
+        // int scoreEarned = (int) amount / 150;
 
-        System.out.println("Score earned: " + scoreEarned);
+        // System.out.println("Score earned: " + scoreEarned);
 
-        this.score = this.score + scoreEarned;
+        // this.score = this.score + scoreEarned;
 
-        System.out.println("Current score: " + this.score);
+        // System.out.println("Current score: " + this.score);
 
         super.increaseBalance(amount);
     }
