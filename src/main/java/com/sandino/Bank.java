@@ -24,16 +24,16 @@ public class Bank {
 
     public void createRegularAccount(int number) {
 
-        // boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
+        boolean exists = accounts.stream().anyMatch(account -> account.getNumber() == number);
 
-        // if (exists) {
-        //     System.out.println("An account with this number already exists");
-        //     return;
-        // }
+        if (exists) {
+            System.out.println("An account with this number already exists");
+            return;
+        }
 
-        // Account account = new Account(number);
-        // accounts.add(account);
-        // System.out.println("Account created");
+        Account account = new Account(number);
+        accounts.add(account);
+        System.out.println("Account created");
     }
 
     public void createBonusAccount(int number) {
