@@ -1,9 +1,15 @@
 # syntax=docker/dockerfile:1
 
-FROM adoptopenjdk:11-jre-hotspot
+FROM maven:3.8.2-adoptopenjdk-11
 
 WORKDIR /app
 
-COPY target/java-bank-1.0.jar ./
+COPY pom.xml ./
+
+COPY src ./src
+
+RUN mvn verify
+
+WORKDIR /app/target
 
 CMD ["java", "-jar", "java-bank-1.0.jar"]
